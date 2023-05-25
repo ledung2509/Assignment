@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.DAO;
 import Model.KhachHang;
+import Model.MaHoa;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -34,6 +35,7 @@ public class DangNhap extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String tenDangNhap = request.getParameter("tenDangNhap");
         String matKhau = request.getParameter("matKhau");
+        matKhau = MaHoa.toSHA1(matKhau);
         DAO dao = new DAO();
         KhachHang a = dao.getAccount(tenDangNhap, matKhau);
         if (a == null) {
